@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neon Valentine - Mobile</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Orbitron:wght@500&family=Poppins:wght@400;600&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    background:radial-gradient(circle at center,#140014,#2b0033,#3d004d);
+    font-family:'Poppins', sans-serif;
+    position:relative;
+}
+
+/* Floating Hearts */
+.heart{
+    position:absolute;
+    bottom:-40px;
+    animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+    0%{transform:translateY(0) scale(1);opacity:1;}
+    100%{transform:translateY(-110vh) scale(1.2);opacity:0;}
+}
+
+/* FIRST PAGE */
+#firstPage{
+    width:92%;
+    height:420px;
+    margin:40px auto;
+    border:2px solid #ff00cc;
+    border-radius:25px;
+    box-shadow:0 0 20px #ff00cc,0 0 40px #ff0099;
+    text-align:center;
+    position:relative;
+    padding-top:50px;
+}
+
+#firstPage h1{
+    font-family:'Pacifico', cursive;
+    font-size:34px;
+    color:white;
+    text-shadow:0 0 10px #ff00cc,0 0 20px #ff0099;
+    padding:0 15px;
+}
+
+/* BUTTONS */
+button{
+    position:absolute;
+    padding:12px 28px;
+    font-size:16px;
+    border-radius:40px;
+    cursor:pointer;
+    font-family:'Orbitron', sans-serif;
+    transition:
+        left 0.5s cubic-bezier(.68,-0.55,.27,1.55),
+        top 0.5s cubic-bezier(.68,-0.55,.27,1.55),
+        transform 0.3s;
+}
+
+/* YES */
+#yes{
+    top:260px;
+    left:20%;
+    background:#ff0066;
+    color:white;
+    border:2px solid #ff66cc;
+    box-shadow:0 0 15px #ff0066,0 0 30px #ff00cc;
+    animation:pulse 2s infinite;
+}
+
+/* NO */
+#no{
+    top:260px;
+    left:55%;
+    background:#330033;
+    color:#ff80bf;
+    border:2px solid #ff00cc;
+    box-shadow:0 0 10px #ff00cc;
+}
+
+@keyframes pulse{
+    0%{box-shadow:0 0 8px #ff0066;}
+    50%{box-shadow:0 0 25px #ff00cc;}
+    100%{box-shadow:0 0 8px #ff0066;}
+}
+
+/* SECOND PAGE */
+#secondPage{
+    display:none;
+    min-height:100vh;
+    width:100%;
+    background:linear-gradient(to bottom,#1a001a,#330033,#4d004d);
+    text-align:center;
+    padding:30px 20px 60px 20px;
+    overflow-y:auto;
+    font-family:'Quicksand', sans-serif; /* Applied here */
+}
+
+#secondPage h1{
+    font-size:30px;
+    font-weight:700;
+    color:#ffffff;
+    text-shadow:0 0 8px #ff3399;
+    margin-bottom:15px;
+}
+
+#secondPage img{
+    width:90%;
+    max-width:320px;
+    border-radius:20px;
+    border:3px solid #ff00cc;
+    box-shadow:0 0 20px #ff00cc;
+    margin:15px 0;
+}
+
+#secondPage p{
+    font-size:18px;
+    font-weight:500;
+    line-height:1.7;
+    color:#ffe6fa;
+    margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<script>
+const colors=["#ff00cc","#ff0066","#ff4da6","#ff66ff"];
+for(let i=0;i<20;i++){
+    let heart=document.createElement("div");
+    heart.classList.add("heart");
+
+    heart.innerHTML=`<svg width="22" height="22" viewBox="0 0 24 24">
+    <path fill="${colors[Math.floor(Math.random()*colors.length)]}"
+    d="M12 21s-6.7-4.35-9.33-7.28C.6 11.3 1.07 7.91 3.7 6.3 6.07 4.87 8.94 5.5 12 8.09c3.06-2.59 5.93-3.22 8.3-1.79 2.63 1.61 3.1 5 1.03 7.42C18.7 16.65 12 21 12 21z"/>
+    </svg>`;
+
+    heart.style.left=Math.random()*100+"%";
+    heart.style.animationDuration=(6+Math.random()*4)+"s";
+    document.body.appendChild(heart);
+}
+</script>
+
+<div id="firstPage">
+    <h1>Will You Be My Valentine di my dear Jasmina? 💖✨</h1>
+    <button id="yes" onclick="acceptLove()">YES 💘</button>
+    <button id="no" onclick="moveNo()">NO 💔</button>
+</div>
+
+<div id="secondPage">
+    <h1>Love you as always I do di ❤️</h1>
+    <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7">
+    <p>
+        Your presence and happiness are my eyes and breath di thangoo 🥺❤️  
+        Thanks for keeping me alive di adiye and I hope the Lord  
+        who made us love each other will join us together at His  
+        presence and perfect timing 🫂✨❤️  
+        (Add more love lines here freely 💕)
+    </p>
+</div>
+
+<script>
+function acceptLove(){
+    document.body.style.overflow="auto";
+    document.getElementById("firstPage").style.display="none";
+    document.getElementById("secondPage").style.display="block";
+}
+
+const texts=["I will cry 😢","Accept me ❤️","I love you 💕","Please 🥺","Think again 💖"];
+
+function moveNo(){
+    let btn=document.getElementById("no");
+    let container=document.getElementById("firstPage");
+
+    btn.innerText=texts[Math.floor(Math.random()*texts.length)];
+
+    let maxX=container.clientWidth - btn.offsetWidth - 10;
+    let maxY=container.clientHeight - btn.offsetHeight - 10;
+
+    btn.style.left=Math.random()*maxX+"px";
+    btn.style.top=Math.random()*maxY+"px";
+}
+</script>
+
+</body>
+</html>
